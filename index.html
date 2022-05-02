@@ -5,13 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
-    <script src="https://unpkg.com/vue@2"></script>
 
     <title>マッキーノWeb</title>
 </head>
@@ -56,17 +52,17 @@
                     );
                 }
             </script>
-            </tr>
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary m-1" onclick="location.href='#title'">マッキーノを始める</button>
+    <button type="button" class="btn btn-primary m-1" onclick="MKStart()">マッキーノを始める</button>
 
+    <p style="margin:500px"></p>
     <!-- マッキーノを始める -->
     <a id="title">
         <div class="container-fluid my-2" style="background-color:lightskyblue">マッキーノを始める</div>
     </a>
-    
+
     <button type="button" class="btn btn-primary m-1" onclick="NextQuestion()">次の問題を表示</button>
     <button type="button" class="btn btn-secondary m-1" onclick="ViewAns()">答えを見る</button>
 
@@ -89,6 +85,7 @@
         <label id="answer">なし</label>
     </div>
 
+    <p style="margin:500px"></p>
     <!-- footer -->
     <footer style="background-color:lightgray">マッキーノWeb動作確認用ページ</footer>
     <script src="./index.js"></script>
