@@ -1,3 +1,8 @@
+var mk_list = [];
+var buffer = [];
+var trash = [];
+var select = -1;
+
 /** CSVファイルの読み込み **/
 const input = document.getElementById('CSV_File');
 const reader = new FileReader();
@@ -16,10 +21,17 @@ input.addEventListener('change', (e) => {
 
 function CSV_Import() {
     console.log(csv_txt);
-    var csv_list_sub = csv_txt.split("\r\n");
+    var csv_txt_sub = csv_txt;
+    if (csv_txt.indexOf("\r\n") > -1) {
+        csv_txt_sub = csv_txt_sub.replace("\r\n", "\n");
+        csv_txt_sub = csv_txt_sub.replace("\r", "");
+    } else {
+        csv_txt_sub = csv_txt_sub.replace("\r", "\n");
+    }
+    var csv_list_sub = csv_txt_sub.split("\n");
     var csv_list = [];
     for (var i = 0; i < csv_list_sub.length; i++) {
-        csv_list.push(csv_list_sub[i].split(", "));
+        csv_list.push(csv_list_sub[i].split(","));
     }
     console.log(csv_list);
     for (var i = 1; i <= 22; i++) {
@@ -29,11 +41,17 @@ function CSV_Import() {
     }
 }
 
+function CSV_Export() {
+    mk_list = [];
+    for (var i = 1; i <= 22; i++) {
+        var term = document.getElementById("term" + i);
+        var ans = document.getElementById("ans" + i);
+        mk_list.push([i, term.value, ans.value]);
+    }
+    alert(mk_list);
+}
+
 /** マッキーノリストの作成 **/
-var mk_list = [];
-var buffer = [];
-var trash = [];
-var select = -1;
 
 function MKStart() {
     mk_list = [];
