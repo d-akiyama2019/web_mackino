@@ -54,8 +54,10 @@
             </script>
         </tbody>
     </table>
-
-    <button type="button" class="btn btn-primary m-1" onclick="MKStart()">マッキーノを始める</button>
+    <div align="right">
+        <button type="button" class="btn btn-outline-secondary" onclick="CSV_Export()">エクスポート</button>
+    </div>
+    <button type="button" class="btn btn-primary mx-1" onclick="MKStart()">マッキーノを始める</button>
 
     <p style="margin:500px"></p>
     <!-- マッキーノを始める -->
@@ -77,12 +79,12 @@
     </div>
 
     <div class="container-fluid">
-        <label>問題</label>
-        <label id="question">なし</label>
+        <label style="font-size: 2em">問題</label>
+        <label style="font-size: 2em" id="question">なし</label>
     </div>
     <div class="container-fluid">
-        <label>答え</label>
-        <label id="answer">なし</label>
+        <label style="font-size: 2em">答え</label>
+        <label style="font-size: 2em" id="answer">なし</label>
     </div>
 
     <p style="margin:500px"></p>
