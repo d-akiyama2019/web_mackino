@@ -74,6 +74,7 @@ function MKStart() {
 
     buffer = [];
     trash = [];
+    ans_flag = true;
     for (var i = 1; i <= 22; i++) buffer.push(i);
     document.getElementById("buffer").textContent = buffer;
     location.href = "#title";
