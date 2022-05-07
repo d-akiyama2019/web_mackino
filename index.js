@@ -13,27 +13,25 @@ input.addEventListener('change', (e) => {
     if (file.type === 'text/csv') {
         reader.onload = () => {
             csv_txt = reader.result;
-            console.log(csv_txt);
         }
         reader.readAsText(file);
     }
 });
 
 function CSV_Import() {
-    console.log(csv_txt);
     var csv_txt_sub = csv_txt;
+    if (!csv_txt) return;
     if (csv_txt.indexOf("\r\n") > -1) {
         csv_txt_sub = csv_txt_sub.replace("\r\n", "\n");
         csv_txt_sub = csv_txt_sub.replace("\r", "");
-    } else {
+    } else if (csv_txt.indexOf("\r") > -1) {
         csv_txt_sub = csv_txt_sub.replace("\r", "\n");
     }
     var csv_list_sub = csv_txt_sub.split("\n");
     var csv_list = [];
     for (var i = 0; i < csv_list_sub.length; i++) {
-        csv_list.push(csv_list_sub[i].split(","));
+        csv_list.push(csv_list_sub[i].split(", "));
     }
-    console.log(csv_list);
     for (var i = 1; i <= 22; i++) {
         var data = csv_list[i - 1];
         document.getElementById("term" + i).value = data[1];
@@ -41,26 +39,38 @@ function CSV_Import() {
     }
 }
 
+/** CSVファイルの書き出し **/
 function CSV_Export() {
     mk_list = [];
+    var dl_csv = "";
     for (var i = 1; i <= 22; i++) {
         var term = document.getElementById("term" + i);
         var ans = document.getElementById("ans" + i);
         mk_list.push([i, term.value, ans.value]);
+        dl_csv += i + ", " + term.value + ", " + ans.value + "\r\n";
     }
-    alert(mk_list);
+    const blob = new Blob([dl_csv], {
+        type: "text/plain"
+    });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'mackino_List.csv';
+    link.click();
 }
 
 /** マッキーノリストの作成 **/
-
 function MKStart() {
     mk_list = [];
     for (var i = 1; i <= 22; i++) {
         var term = document.getElementById("term" + i);
         var ans = document.getElementById("ans" + i);
+        if (!term.value) continue;
         mk_list.push([i, term.value, ans.value]);
     }
-    console.log(mk_list);
+    if (mk_list.length < 22) {
+        alert("単語を22個登録してください");
+        return;
+    }
 
     buffer = [];
     trash = [];
@@ -70,6 +80,7 @@ function MKStart() {
 }
 
 function NextQuestion() {
+    if (buffer.length<1) MKStart();
     var num = Math.random() * buffer.length | 0;
     select = buffer.splice(num, 1);
     trash.push(select);
