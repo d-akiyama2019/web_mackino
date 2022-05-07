@@ -79,8 +79,15 @@ function MKStart() {
     location.href = "#title";
 }
 
+/** マッキーノ開始 **/
+ans_flag = false;
+
 function NextQuestion() {
     if (buffer.length < 1) MKStart();
+    if (!ans_flag) {
+        ViewAns();
+        return;
+    }
     var num = Math.random() * buffer.length | 0;
     select = buffer.splice(num, 1);
     trash.push(select);
@@ -95,4 +102,5 @@ function NextQuestion() {
 function ViewAns() {
     var select_data = mk_list[select - 1];
     document.getElementById("answer").textContent = select + ": " + select_data[2];
+    ans = true;
 }
