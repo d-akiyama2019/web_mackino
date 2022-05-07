@@ -80,7 +80,7 @@ function MKStart() {
 }
 
 function NextQuestion() {
-    if (buffer.length<1) MKStart();
+    if (buffer.length < 1) MKStart();
     var num = Math.random() * buffer.length | 0;
     select = buffer.splice(num, 1);
     trash.push(select);
