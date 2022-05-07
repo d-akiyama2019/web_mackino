@@ -19,12 +19,22 @@
         <h1 class="m-2">マッキーノWeb</h1>
     </header>
 
+    <div class="container-fluid my-2" style="background-color:lightgreen">
+        ※次の表に用語とその答えを22個すべて埋めてください<br>
+        マッキーノの始め方は<a target="_blank" href="https://www.kasetu.co.jp/products/detail/647">こちら(仮説社)</a>
+        または<a target="_blank"
+            href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%83%E3%82%AD%E3%83%BC%E3%83%8E#%E6%BA%96%E5%82%99">こちら(Wikipedia)</a>
+        をご覧ください。<br>
+        マッキーノリストの保存や読み込みもできるようになっています。
+    </div>
     <!-- マッキーノリスト作成 -->
-    <div class="container-fluid my-2" style="background-color:lightskyblue">マッキーノリストの作成</div>
+    <div class="container-fluid my-2" style="background-color:lightskyblue">
+        <h2>マッキーノリストの作成</h2>
+    </div>
 
     <div class="input-group">
         <input type="file" class="form-control" accept=".csv" id="CSV_File">
-        <button type="button" class="btn btn-outline-secondary" onclick="CSV_Import()">インポート</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="CSV_Import()">読み込み</button>
     </div>
 
     <button type="button" class="btn btn-primary m-1" onclick="MKStart()">マッキーノを始める</button>
@@ -57,14 +67,16 @@
         </tbody>
     </table>
     <div align="right">
-        <button type="button" class="btn btn-outline-secondary" onclick="CSV_Export()">エクスポート</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="CSV_Export()">保存</button>
     </div>
     <button type="button" class="btn btn-primary mx-1" onclick="MKStart()">マッキーノを始める</button>
 
     <p style="margin:500px"></p>
     <!-- マッキーノを始める -->
     <a id="title">
-        <div class="container-fluid my-2" style="background-color:lightskyblue">マッキーノを始める</div>
+        <div class="container-fluid my-2" style="background-color:lightskyblue">
+            <h2>マッキーノを始める</h2>
+        </div>
     </a>
 
     <button type="button" class="btn btn-primary m-1" onclick="NextQuestion()">次の問題を表示</button>
