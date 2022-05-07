@@ -80,7 +80,7 @@ function MKStart() {
 }
 
 /** マッキーノ開始 **/
-ans_flag = false;
+var ans_flag = true;
 
 function NextQuestion() {
     if (buffer.length < 1) MKStart();
@@ -97,10 +97,11 @@ function NextQuestion() {
     document.getElementById("trash").textContent = trash;
     document.getElementById("question").textContent = select + ": " + select_data[1];
     document.getElementById("answer").textContent = select + ": ";
+    ans_flag = false;
 }
 
 function ViewAns() {
     var select_data = mk_list[select - 1];
     document.getElementById("answer").textContent = select + ": " + select_data[2];
-    ans = true;
+    ans_flag = true;
 }
