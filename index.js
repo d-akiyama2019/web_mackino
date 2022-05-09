@@ -125,6 +125,7 @@ function NextQuestion() {
         MKStart();
         return;
     }
+    if (buffer.length < 1) return;
     if (!ans_flag) {
         ViewAns();
         return;
@@ -142,6 +143,7 @@ function NextQuestion() {
 }
 
 function ViewAns() {
+    if (buffer.length < 1) return;
     var select_data = mk_list[select - 1];
     document.getElementById("answer").textContent = select + ": " + select_data[2];
     ans_flag = true;
