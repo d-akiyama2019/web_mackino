@@ -143,7 +143,7 @@ function NextQuestion() {
 }
 
 function ViewAns() {
-    if (buffer.length < 1) return;
+    if (buffer.length < 1 && ans_flag) return;
     var select_data = mk_list[select - 1];
     document.getElementById("answer").textContent = select + ": " + select_data[2];
     ans_flag = true;
