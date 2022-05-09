@@ -125,11 +125,11 @@ function NextQuestion() {
         MKStart();
         return;
     }
-    if (buffer.length < 1) return;
     if (!ans_flag) {
         ViewAns();
         return;
     }
+    if (buffer.length < 1) return;
     var num = Math.random() * buffer.length | 0;
     select = buffer.splice(num, 1);
     trash.push(select);
