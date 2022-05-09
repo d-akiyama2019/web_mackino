@@ -20,7 +20,9 @@
     </header>
 
     <div class="container-fluid my-2" style="background-color:lightgreen">
-        ※次の表に用語とその答えを22個すべて埋めてください<br>
+        ※次の表に用語とその答えを埋めてください<br>
+        マス目が4×4の場合は、用語を22個程度、<br>
+        マス目が3×3の場合は、用語を14個程度が推奨されています。<br>
         マッキーノの始め方は<a target="_blank" href="https://www.kasetu.co.jp/products/detail/647">こちら(仮説社)</a>
         または<a target="_blank"
             href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%83%E3%82%AD%E3%83%BC%E3%83%8E#%E6%BA%96%E5%82%99">こちら(Wikipedia)</a>
@@ -39,7 +41,14 @@
 
     <button type="button" class="btn btn-primary m-1" onclick="MKStart()">マッキーノを始める</button>
 
-    <table class="table table-striped">
+    <div align="right">
+        <button type="button" class="btn btn-danger" onclick="MKList_Add()">+</button>
+        <button type="button" class="btn btn-info" onclick="MKList_Sub()">-</button>
+        <label>用語数:</label>
+        <label id="count">22</label>
+    </div>
+
+    <table class="table table-striped" id="MKTable">
         <thead>
             <th scope="col">#</th>
             <th scope="col">用語</th>
