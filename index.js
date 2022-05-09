@@ -3,61 +3,45 @@ var buffer = [];
 var trash = [];
 var select = -1;
 
-/** CSVファイルの読み込み **/
-const input = document.getElementById('CSV_File');
+/** JSONファイルの読み込み **/
+const input = document.getElementById('JSON_File');
 const reader = new FileReader();
-var csv_txt = "";
+var input_txt = "";
 input.addEventListener('change', (e) => {
     const file = e.target.files[0];
     //ファイルの種類を絞る
-    if (file.type === 'text/csv') {
+    if (file.type === 'application/json') {
         reader.onload = () => {
-            csv_txt = reader.result;
+            input_txt = reader.result;
         }
         reader.readAsText(file);
     }
 });
 
-function CSV_Import() {
-    var csv_txt_sub = csv_txt;
-    if (!csv_txt) return;
-    if (csv_txt.indexOf("\r\n") > -1) {
-        csv_txt_sub = csv_txt_sub.replace("\r\n", "\n");
-        csv_txt_sub = csv_txt_sub.replace("\r", "");
-    } else if (csv_txt.indexOf("\r") > -1) {
-        csv_txt_sub = csv_txt_sub.replace("\r", "\n");
-    }
-    var csv_list_sub = csv_txt_sub.split("\n");
-    var csv_list = [];
-    for (var i = 0; i < csv_list_sub.length; i++) {
-        csv_list.push(csv_list_sub[i].split(", "));
-    }
+function JSON_Import() {
+    var json_list = JSON.parse(input_txt);
     for (var i = 1; i <= 22; i++) {
-        var data = csv_list[i - 1];
+        var data = json_list[i - 1];
         document.getElementById("term" + i).value = data[1];
         document.getElementById("ans" + i).value = data[2];
     }
 }
-
-/** CSVファイルの書き出し **/
-function CSV_Export() {
+/** JSONファイルの書き出し **/
+function JSON_Export() {
     mk_list = [];
-    var dl_csv = "";
     for (var i = 1; i <= 22; i++) {
         var term = document.getElementById("term" + i);
         var ans = document.getElementById("ans" + i);
         mk_list.push([i, term.value, ans.value]);
-        dl_csv += i + ", " + term.value + ", " + ans.value + "\r\n";
     }
-    const blob = new Blob([dl_csv], {
-        type: "text/plain"
+    const blob = new Blob([JSON.stringify(mk_list)], {
+        type: "application/json"
     });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'mackino_List.csv';
+    link.download = 'mackino_List.json';
     link.click();
 }
-
 /** マッキーノリストの作成 **/
 function MKStart() {
     mk_list = [];
