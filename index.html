@@ -82,9 +82,19 @@
             </script>
         </tbody>
     </table>
+
     <div align="right">
-        <button type="button" class="btn btn-outline-secondary" onclick="JSON_Export()">保存</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="JSON_Export()">ファイルの保存</button>
     </div>
+
+    <p>
+        <div class="input-group">
+            <button type="button" class="btn btn-info mx-1" onclick="create_queryURL()">共有用URLを生成</button>
+            <input type="text" class="form-control" id="input_queryURL" placeholder="共有用URLが表示されます">
+            <button type="button" class="btn btn-outline-secondary" onclick="copy_queryURL()">コピー</button>
+        </div>
+    </p>
+
     <button type="button" class="btn btn-primary mx-1" onclick="MKStart()">マッキーノを始める</button>
 
     <p style="margin:500px"></p>
