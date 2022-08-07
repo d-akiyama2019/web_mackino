@@ -56,39 +56,6 @@ function JSON_Export() {
     link.click();
 }
 
-/** URLクエリによる初期設定 **/
-const searchParams = new URLSearchParams(window.location.search);
-if (searchParams.has('src')) {
-    var base64_list = searchParams.get('src');
-    input_txt = decodeURI(base64_list);
-    JSON_Import();
-}
-
-/** リスト入力済みURLの生成 **/
-function create_queryURL() {
-    mk_list = [];
-    for (var i = 1; i <= count; i++) {
-        var term = document.getElementById("term" + i);
-        var ans = document.getElementById("ans" + i);
-        mk_list.push([i, term.value, ans.value]);
-    }
-    var queryURL =
-        window.location.origin +
-        window.location.pathname +
-        "?src=" +
-        encodeURI(JSON.stringify(mk_list));
-    document.getElementById("input_queryURL").value = queryURL;
-}
-
-function copy_queryURL() {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(
-            document.getElementById("input_queryURL").value
-        );
-    }
-}
-
-
 /** マッキーノリストの問題数 **/
 var mk_table = document.getElementById('MKTable');
 
@@ -149,6 +116,38 @@ function MKStart() {
     location.href = "#title";
     document.getElementById("question").textContent = "準備完了";
     document.getElementById("answer").textContent = "";
+}
+
+/** URLクエリによる初期設定 **/
+const searchParams = new URLSearchParams(window.location.search);
+if (searchParams.has('src')) {
+    var base64_list = searchParams.get('src');
+    input_txt = decodeURI(base64_list);
+    JSON_Import();
+}
+
+/** リスト入力済みURLの生成 **/
+function create_queryURL() {
+    mk_list = [];
+    for (var i = 1; i <= count; i++) {
+        var term = document.getElementById("term" + i);
+        var ans = document.getElementById("ans" + i);
+        mk_list.push([i, term.value, ans.value]);
+    }
+    var queryURL =
+        window.location.origin +
+        window.location.pathname +
+        "?src=" +
+        encodeURI(JSON.stringify(mk_list));
+    document.getElementById("input_queryURL").value = queryURL;
+}
+
+function copy_queryURL() {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(
+            document.getElementById("input_queryURL").value
+        );
+    }
 }
 
 /** マッキーノ開始 **/
