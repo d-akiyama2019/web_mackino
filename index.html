@@ -16,8 +16,13 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
@@ -27,13 +32,31 @@
     </header>
 
     <!-- マッキーノの説明 -->
-    <div class="container-fluid my-2" style="background-color:lightgreen">
-        ※次の表に用語とその答えを埋めてください<br> マス目が4×4の場合は、用語を22個程度、
-        <br> マス目が3×3の場合は、用語を14個程度が推奨されています。
-        <br> マッキーノの始め方は
+    <div class="container-fluid my-2" style="background-color: lightpink">
+        マッキーノについて、
         <a target="_blank" href="https://www.kasetu.co.jp/products/detail/647">こちら(仮説社)</a> または
-        <a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%83%E3%82%AD%E3%83%BC%E3%83%8E#%E6%BA%96%E5%82%99">こちら(Wikipedia)</a> をご覧ください。
-        <br> マッキーノリストの保存や読み込みもできるようになっています。
+        <a target="_blank"
+            href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%83%E3%82%AD%E3%83%BC%E3%83%8E#%E6%BA%96%E5%82%99">こちら(Wikipedia)</a>
+        をご覧ください。
+    </div>
+
+    <!-- マッキーノWEBの取扱説明 -->
+    <div class="container-fluid my-2" style="background-color:lightgreen">
+        <ul>
+            <li>次の表に用語とその答えを埋めてください。
+                <ul>
+                    <li>マス目が4×4の場合は、用語を22個程度が推奨</li>
+                    <li>マス目が3×3の場合は、用語を14個程度が推奨</li>
+                </ul>
+            </li>
+            <li>用語の入力欄の追加・削除は＋・-ボタンを押してください。</li>
+            <li> 数式を入力する場合は、<a target="_blank"
+                    href="https://ja.wikipedia.org/wiki/TeX">\(\TeX\)</a>で書かれた数式を<b>\\(...\\)</b>で囲んでください。
+            </li>
+            <li>マッキーノリストの保存や読み込みもできます。</li>
+            <li>URLによるマッキーノリストの共有ができます。</li>
+            <li>このサイトのソースコードは<a target="_blank" href="https://github.com/d-akiyama2019/web_mackino">こちら</a>になります。</li>
+        </ul>
     </div>
 
     <!-- マッキーノリスト作成 -->
@@ -88,11 +111,11 @@
     </div>
 
     <p>
-        <div class="input-group">
-            <button type="button" class="btn btn-info mx-1" onclick="create_queryURL()">共有用URLを生成</button>
-            <input type="text" class="form-control" id="input_queryURL" placeholder="共有用URLが表示されます">
-            <button type="button" class="btn btn-outline-secondary" onclick="copy_queryURL()">コピー</button>
-        </div>
+    <div class="input-group">
+        <button type="button" class="btn btn-info mx-1" onclick="create_queryURL()">共有用URLを生成</button>
+        <input type="text" class="form-control" id="input_queryURL" placeholder="共有用URLが表示されます">
+        <button type="button" class="btn btn-outline-secondary" onclick="copy_queryURL()">コピー</button>
+    </div>
     </p>
 
     <button type="button" class="btn btn-primary mx-1" onclick="MKStart()">マッキーノを始める</button>
