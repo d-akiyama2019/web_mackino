@@ -3,11 +3,18 @@ var buffer = [];
 var trash = [];
 var select = -1;
 var count = 22;
+// JSON_parseされたマッキーノリスト
+var input_txt = "";
+// マッキーノリストのID
+const mk_table = document.getElementById('MKTable');
+// JSONファイルのID
+const input = document.getElementById('JSON_File');
+// ファイルリーダー（JSONファイル用）
+const reader = new FileReader();
+// URLのクエリパラメーター
+const searchParams = new URLSearchParams(window.location.search);
 
 /** JSONファイルの読み込み **/
-const input = document.getElementById('JSON_File');
-const reader = new FileReader();
-var input_txt = "";
 input.addEventListener('change', (e) => {
     const file = e.target.files[0];
     //ファイルの種類を絞る
@@ -19,6 +26,7 @@ input.addEventListener('change', (e) => {
     }
 });
 
+/** JSONファイルの解析 **/
 function JSON_Import() {
     var json_list = JSON.parse(input_txt);
     if (json_list.length < count) {
@@ -39,6 +47,7 @@ function JSON_Import() {
         document.getElementById("ans" + i).value = data[2];
     }
 }
+
 /** JSONファイルの書き出し **/
 function JSON_Export() {
     mk_list = [];
@@ -56,9 +65,40 @@ function JSON_Export() {
     link.click();
 }
 
-/** マッキーノリストの問題数 **/
-var mk_table = document.getElementById('MKTable');
+/** URLクエリによる初期設定 **/
+if (searchParams.has('src')) {
+    var base64_list = searchParams.get('src');
+    input_txt = decodeURIComponent(base64_list);
+    JSON_Import();
+}
 
+/** 共有用URLの生成 **/
+function create_queryURL() {
+    mk_list = [];
+    for (var i = 1; i <= count; i++) {
+        var term = document.getElementById("term" + i);
+        var ans = document.getElementById("ans" + i);
+        mk_list.push([i, term.value, ans.value]);
+    }
+    var queryURL =
+        window.location.origin
+        + window.location.pathname
+        + "?src="
+        + encodeURIComponent(JSON.stringify(mk_list))
+        + "#title";
+    document.getElementById("input_queryURL").value = queryURL;
+}
+
+/** 共有用URLをクリップボードにコピー **/
+function copy_queryURL() {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(
+            document.getElementById("input_queryURL").value
+        );
+    }
+}
+
+/** マッキーノリストの問題入力欄追加 **/
 function MKList_Add() {
     count++;
     var newRow = mk_table.insertRow(-1);
@@ -88,12 +128,14 @@ function MKList_Add() {
     document.getElementById("count").textContent = count;
 }
 
+/** マッキーノリストの問題入力欄削除 **/
 function MKList_Sub() {
     if (count <= 1) return;
     count--;
     mk_table.deleteRow(-1);
     document.getElementById("count").textContent = count;
 }
+
 /** マッキーノリストの作成 **/
 function MKStart() {
     mk_list = [];
@@ -118,38 +160,6 @@ function MKStart() {
     document.getElementById("answer").textContent = "";
 }
 
-/** URLクエリによる初期設定 **/
-const searchParams = new URLSearchParams(window.location.search);
-if (searchParams.has('src')) {
-    var base64_list = searchParams.get('src');
-    input_txt = decodeURI(base64_list);
-    JSON_Import();
-}
-
-/** リスト入力済みURLの生成 **/
-function create_queryURL() {
-    mk_list = [];
-    for (var i = 1; i <= count; i++) {
-        var term = document.getElementById("term" + i);
-        var ans = document.getElementById("ans" + i);
-        mk_list.push([i, term.value, ans.value]);
-    }
-    var queryURL =
-        window.location.origin +
-        window.location.pathname +
-        "?src=" +
-        encodeURI(JSON.stringify(mk_list));
-    document.getElementById("input_queryURL").value = queryURL;
-}
-
-function copy_queryURL() {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(
-            document.getElementById("input_queryURL").value
-        );
-    }
-}
-
 /** マッキーノ開始 **/
 var ans_flag = true;
 
@@ -172,6 +182,7 @@ function NextQuestion() {
     document.getElementById("trash").textContent = trash;
     document.getElementById("question").textContent = select + ": " + select_data[1];
     document.getElementById("answer").textContent = select + ": ";
+    MathJax.typeset();
     ans_flag = false;
 }
 
@@ -179,5 +190,6 @@ function ViewAns() {
     if (buffer.length < 1 && ans_flag) return;
     var select_data = mk_list[select - 1];
     document.getElementById("answer").textContent = select + ": " + select_data[2];
+    MathJax.typeset();
     ans_flag = true;
 }
