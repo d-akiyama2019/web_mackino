@@ -80,7 +80,7 @@
 
     <table class="table table-striped" id="MKTable">
         <thead>
-            <th scope="col">#</th>
+            <th scope="col" class="text-end">#</th>
             <th scope="col">用語</th>
             <th scope="col">答え</th>
             <th scope="col"></th>
@@ -96,7 +96,7 @@
                 for (var i = 1; i <= 22; i++) {
                     document.write(
                         '<tr>' +
-                        '<th scope="row">' + i + '</th>' +
+                        '<th scope="row" class="text-end">' + i + '</th>' +
                         '<td><input type="text" class="form-control" id="term' + i + '" placeholder="登録する用語を入力">' +
                         '</td>' +
                         '<td><input type="text" class="form-control" id="ans' + i + '" placeholder="登録する答えを入力">' +
