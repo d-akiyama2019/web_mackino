@@ -125,6 +125,14 @@ function MKList_Add() {
     input_form.placeholder = '登録する答えを入力';
     newCell.appendChild(input_form);
 
+    var newCell = newRow.insertCell(-1);
+    var input_form = document.createElement('button');
+    input_form.type = 'button';
+    input_form.className = 'btn btn-success';
+    input_form.setAttribute('onclick', 'MKPreview(' + count + ')');
+    input_form.textContent = 'プレビュー';
+    newCell.appendChild(input_form);
+
     document.getElementById("count").textContent = count;
 }
 
@@ -158,6 +166,26 @@ function MKStart() {
     location.href = "#title";
     document.getElementById("question").textContent = "準備完了";
     document.getElementById("answer").textContent = "";
+}
+
+/** マッキーノのプレビュー **/
+function MKPreview(num) {
+    var MKModal = new bootstrap.Modal(document.getElementById('MKPreview'));
+
+    mk_list = [];
+    for (var i = 1; i <= count; i++) {
+        var term = document.getElementById("term" + i);
+        var ans = document.getElementById("ans" + i);
+        mk_list.push([i, term.value, ans.value]);
+    }
+
+    var select = num;
+    var select_data = mk_list[select - 1];
+    document.getElementById("p-question").textContent = select + ": " + select_data[1];
+    document.getElementById("p-answer").textContent = select + ": " + select_data[2];
+    MathJax.typeset();
+
+    MKModal.toggle();
 }
 
 /** マッキーノ開始 **/
