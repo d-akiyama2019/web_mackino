@@ -105,6 +105,7 @@ function MKList_Add() {
 
     var newHeader = document.createElement('th');
     newHeader.scope = "row";
+    newHeader.className = "text-end";
     newRow.appendChild(newHeader);
     var newText = document.createTextNode(count);
     newHeader.appendChild(newText);
