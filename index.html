@@ -83,12 +83,14 @@
             <th scope="col">#</th>
             <th scope="col">用語</th>
             <th scope="col">答え</th>
+            <th scope="col"></th>
         </thead>
         <tbody>
             <tr>
                 <th scope="row">0</th>
                 <td>(例) 仮説実験</td>
                 <td>(例) かせつじっけん</td>
+                <td></td>
             </tr>
             <script>
                 for (var i = 1; i <= 22; i++) {
@@ -99,6 +101,7 @@
                         '</td>' +
                         '<td><input type="text" class="form-control" id="ans' + i + '" placeholder="登録する答えを入力">' +
                         '</td>' +
+                        '<td><button type="button" class="btn btn-success" onclick="MKPreview(' + i + ')">プレビュー</button></td>' +
                         '</tr>'
                     );
                 }
@@ -106,9 +109,40 @@
         </tbody>
     </table>
 
-    <div align="right">
-        <button type="button" class="btn btn-outline-secondary" onclick="JSON_Export()">ファイルの保存</button>
+    <!-- モーダルプレビュー用 -->
+    <div class="modal" tabindex="-1" id="MKPreview">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">マッキーノリストのプレビュー</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <label style="font-size: 2em">問題</label>
+                        <label style="font-size: 2em" id="p-question">なし</label>
+                    </div>
+                    <div class="container-fluid">
+                        <label style="font-size: 2em">答え</label>
+                        <label style="font-size: 2em" id="p-answer">なし</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- マッキーノリスト保存UI -->
+    <p>
+    <div align="right">
+        <button type="button" class="btn btn-danger" onclick="MKList_Add()">+</button>
+        <button type="button" class="btn btn-info" onclick="MKList_Sub()">-</button>
+    </div>
+    </p>
+
+    <button type="button" class="btn btn-outline-secondary" onclick="JSON_Export()">ファイルの保存</button>
 
     <p>
     <div class="input-group">
